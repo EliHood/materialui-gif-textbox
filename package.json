@@ -1,6 +1,6 @@
 {
-  "name": "commentbox-simple-demo",
-  "version": "1.1.4",
+  "name": "material-ui-gif-textbox",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "server-build": "webpack",
     "build": "tsc"
   },
-  "author": "",
+  "author": "Eli Hood",
   "license": "ISC",
   "repository": "https://github.com/EliHood/materialui-gif-textbox",
   "devDependencies": {

@@ -4,12 +4,12 @@
 
 ### Install
 
-`npm i comment-simple-demo`
+`npm i material-ui-gif-textbox`
 
 ### **Basic Example**
 
 ```
-import CommentBox from 'commentbox-simple-demo'
+import CommentBox from 'material-ui-gif-textbox'
 function App() {
   const [commentBody, setCommentBody] = useState("");
   const [gifUrl, setGifUrl] = useState("");
