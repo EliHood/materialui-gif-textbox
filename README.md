@@ -10,8 +10,8 @@ npm i material-ui-gif-textbox
 
 ### **Basic Example**
 
-```
-import CommentBox from 'material-ui-gif-textbox'
+```js
+import CommentBox from "material-ui-gif-textbox";
 function App() {
   const [commentBody, setCommentBody] = useState("");
   const [gifUrl, setGifUrl] = useState("");
