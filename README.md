@@ -27,6 +27,14 @@ function App() {
     },
     [setGifUrl, setCommentBody]
   );
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      url: gifUrl,
+      content: commentBody,
+    };
+    console.log(data);
+  };
   return (
     <CommentBox
       type="gif-comment"
@@ -35,6 +43,8 @@ function App() {
       content={commentBody}
       gifChange={selectGif}
       gifUrl={gifUrl}
+      onSubmit={onSubmit}
     />
   );
+}
 ```
