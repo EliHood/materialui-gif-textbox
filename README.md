@@ -1,4 +1,4 @@
-## Text/Gif Comment Box
+## Material UI Text/Gif Comment Box
 
 ##### Component that is built on top of Material UI, and React Giphy Searchbox.
 
