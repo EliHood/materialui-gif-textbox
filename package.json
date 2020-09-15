@@ -1,6 +1,6 @@
 {
   "name": "commentbox-simple-demo",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
