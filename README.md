@@ -2,7 +2,7 @@
 
 ##### Component that is built on top of Material UI, and React Giphy Searchbox.
 
-![Alt text](https://media.giphy.com/media/hrQoggTRAkxRxjuynj/source.mov)
+![Screenshot](./screenshots/pic.gif)
 
 ### Install
 
