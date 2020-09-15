@@ -4,7 +4,9 @@
 
 ### Install
 
-`npm i material-ui-gif-textbox`
+```
+npm i material-ui-gif-textbox
+```
 
 ### **Basic Example**
 
