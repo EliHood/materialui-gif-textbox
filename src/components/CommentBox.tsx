@@ -17,7 +17,6 @@ type CommentType = {
 };
 
 const CommentBox: React.FC<CommentType> = (props) => {
-  console.log("commentbox props", props);
   const [isGifSelected, setGifSelected] = useState<Boolean>(false);
   const {
     type,
@@ -30,7 +29,7 @@ const CommentBox: React.FC<CommentType> = (props) => {
   } = props;
   return (
     <Fragment>
-      <form onSubmit={onSubmit}>
+      <form data-testid="comment-box" onSubmit={onSubmit}>
         {type === "gif-comment" && isGifSelected === false ? (
           <Fragment>
             <TextField
