@@ -6,10 +6,9 @@ type GifType = {
   select: (e: any) => void;
 };
 const GifSection: React.FC<GifType> = (props) => {
-  console.log("fsfsfsfs", props);
   const { apiKey, select } = props;
   return (
-    <Fragment>
+    <div data-testid="gif-section">
       <ReactGiphySearchbox
         wrapperClassName="gifForm"
         searchFormClassName={{ padding: "20px 0px" }}
@@ -20,7 +19,7 @@ const GifSection: React.FC<GifType> = (props) => {
           { mq: "1000px", columns: 4, imageWidth: 120, gutter: 5 },
         ]}
       />
-    </Fragment>
+    </div>
   );
 };
 export default GifSection;

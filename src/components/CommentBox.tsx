@@ -34,6 +34,7 @@ const CommentBox: React.FC<CommentType> = (props) => {
           <Fragment>
             <TextField
               className="commentInput"
+              data-testid="comment_input"
               type="text"
               style={{ borderRadius: "50%" }}
               id="outlined-multiline-static"
@@ -51,7 +52,10 @@ const CommentBox: React.FC<CommentType> = (props) => {
                     style={{ cursor: "pointer", alignItems: "center" }}
                     position="start"
                   >
-                    <GifIcon onClick={() => setGifSelected(true)} />
+                    <GifIcon
+                      data-testid="gif-icon"
+                      onClick={() => setGifSelected(true)}
+                    />
                   </InputAdornment>
                 ),
               }}
@@ -66,6 +70,7 @@ const CommentBox: React.FC<CommentType> = (props) => {
               type="submit"
               variant="outlined"
               color="primary"
+              data-testid="comment-button"
             >
               Post A Comment
             </Button>
@@ -76,6 +81,7 @@ const CommentBox: React.FC<CommentType> = (props) => {
             <Grid container={true} spacing={1} style={{ padding: "50px 0px" }}>
               <Grid item={true} sm={1} lg={1}>
                 <TextFieldsIcon
+                  data-testid="text-icon"
                   style={{ cursor: "pointer" }}
                   onClick={() => setGifSelected(false)}
                 />

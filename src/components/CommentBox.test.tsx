@@ -1,6 +1,13 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { render, screen, cleanup } from "@testing-library/react";
+import {
+  render,
+  screen,
+  cleanup,
+  fireEvent,
+  waitFor,
+  getByTestId,
+} from "@testing-library/react";
 import { enableFetchMocks } from "jest-fetch-mock";
 import CommentBox from "./CommentBox";
 import { act } from "react-dom/test-utils";
@@ -15,7 +22,7 @@ const mockProps = {
 };
 
 describe("CommentBox Test", () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     enableFetchMocks();
     Object.defineProperty(window, "matchMedia", {
       writable: true,
@@ -34,7 +41,7 @@ describe("CommentBox Test", () => {
     await act(async () => {
       render(
         <CommentBox
-          type="post"
+          type="gif-comment"
           apiKey="9Ixlv3DWC1biJRI57RanyL7RTbfzz0o7"
           commentChange={mockProps.commentChange}
           content={"A Word"}
@@ -49,5 +56,66 @@ describe("CommentBox Test", () => {
   it("should render <CommentBox/>", () => {
     expect(screen.getByTestId("comment-box")).toBeInTheDocument();
   });
+
+  it("should render textfield ", () => {
+    expect(screen.getByTestId("comment_input")).toBeInTheDocument();
+  });
+
+  it("should render button", () => {
+    expect(screen.getByTestId("comment-button")).toBeInTheDocument();
+  });
+
+  it("button should be disabled", () => {
+    expect(screen.getByTestId("comment-button")).toBeDisabled();
+  });
+
+  it("should click gif icon and click text icon ", async () => {
+    fireEvent.click(screen.getByTestId("gif-icon"));
+    await waitFor(() =>
+      expect(screen.getByTestId("gif-section")).toBeInTheDocument()
+    );
+    fireEvent.click(screen.getByTestId("text-icon"));
+    expect(screen.getByTestId("comment_input")).toBeInTheDocument();
+  });
+
   afterEach(cleanup);
+});
+
+describe("Should render <CommentBox/> diffent use case", () => {
+  beforeEach(async () => {
+    enableFetchMocks();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // deprecated
+        removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+
+    await act(async () => {
+      render(
+        <CommentBox
+          type="gif-comment"
+          apiKey="9Ixlv3DWC1biJRI57RanyL7RTbfzz0o7"
+          commentChange={mockProps.commentChange}
+          content={
+            "BlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlah"
+          }
+          gifChange={mockProps.gifChange}
+          gifUrl={"fsfsfsfsfsfsfsfs"}
+          onSubmit={mockProps.onSubmit}
+        />
+      );
+    });
+  });
+
+  it("button should be disabled", () => {
+    expect(screen.getByTestId("comment-button")).toBeEnabled();
+  });
 });
