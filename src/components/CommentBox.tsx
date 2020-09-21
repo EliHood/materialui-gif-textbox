@@ -14,6 +14,8 @@ type CommentType = {
   gifUrl: string;
   apiKey: string;
   onSubmit: (e: any) => void;
+  style?: object;
+  buttonStyle?: object;
 };
 
 const CommentBox: React.FC<CommentType> = (props) => {
@@ -21,6 +23,8 @@ const CommentBox: React.FC<CommentType> = (props) => {
   const {
     type,
     content,
+    style,
+    buttonStyle,
     onSubmit,
     commentChange,
     gifUrl,
@@ -36,7 +40,7 @@ const CommentBox: React.FC<CommentType> = (props) => {
               className="commentInput"
               data-testid="comment_input"
               type="text"
-              style={{ borderRadius: "50%" }}
+              style={style}
               id="outlined-multiline-static"
               label="Write A Comment"
               multiline={true}
@@ -67,6 +71,7 @@ const CommentBox: React.FC<CommentType> = (props) => {
               disabled={
                 content.length > 6 && content.length <= 200 ? false : true
               }
+              style={buttonStyle}
               type="submit"
               variant="outlined"
               color="primary"
