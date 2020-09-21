@@ -10,6 +10,7 @@ const GifSection: React.FC<GifType> = (props) => {
   return (
     <div data-testid="gif-section">
       <ReactGiphySearchbox
+        data-testid="search-box"
         wrapperClassName="gifForm"
         searchFormClassName={{ padding: "20px 0px" }}
         apiKey={apiKey}
