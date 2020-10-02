@@ -71,8 +71,11 @@ describe("CommentBox Test", () => {
 
   it("should test onChange TextField", () => {
     const field = screen.getByTestId("comment_input").querySelector("textarea");
-    fireEvent.change(field, { target: { defaultValue: "Owls Are Cool" } });
-    expect(field.defaultValue).toBe("Owls Are Cool");
+    fireEvent.change(field, {
+      target: { name: "comment_body", value: "Owls Are Cool" },
+    });
+
+    expect(field.value).toBe("Owls Are Cool");
   });
 
   it("should click gif icon and click text icon ", async () => {

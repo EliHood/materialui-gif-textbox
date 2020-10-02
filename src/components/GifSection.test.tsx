@@ -49,8 +49,40 @@ describe("<GifSection> test", () => {
           "https://media0.giphy.com/media/3xz2BvpyQkY46uKrEQ/giphy.gif?cid=e8452e687829e48afb302853c05c514d6fb85394392211d4&rid=giphy.gif",
       },
     });
+
     expect(field.value).toBe(
       "https://media0.giphy.com/media/3xz2BvpyQkY46uKrEQ/giphy.gif?cid=e8452e687829e48afb302853c05c514d6fb85394392211d4&rid=giphy.gif"
     );
   });
+});
+
+describe("<GifSection/> test case", () => {
+  beforeEach(async () => {
+    enableFetchMocks();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // deprecated
+        removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  });
+  // it("should select change", async () => {
+  //   const mockSelect = jest.fn();
+  //   render(
+  //     <GifSection
+  //       apiKey="9Ixlv3DWC1biJRI57RanyL7RTbfzz0o7"
+  //       select={mockSelect}
+  //     />
+  //   );
+  //   fireEvent.click(screen.getByTestId("SearchFormInput"));
+  //   await waitFor(() => screen.debug(screen.getByTestId("gif-section")));
+  //   await expect(mockProps.select).toHaveBeenCalledTimes(1);
+  // });
 });

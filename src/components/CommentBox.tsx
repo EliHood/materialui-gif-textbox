@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import GifIcon from "@material-ui/icons/Gif";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
-import Button from "@material-ui/core/Button";
+import OurButton from "./styled/MainButton";
 import Grid from "@material-ui/core/Grid";
 import GifSection from "./GifSection";
 type CommentType = {
@@ -34,77 +34,64 @@ const CommentBox: React.FC<CommentType> = (props) => {
   return (
     <Fragment>
       <form data-testid="comment-box" onSubmit={onSubmit}>
-        {type === "gif-comment" && isGifSelected === false ? (
+        {type === "gif-comment" && isGifSelected === true && (
           <Fragment>
-            <TextField
-              className="commentInput"
-              data-testid="comment_input"
-              type="text"
-              style={style}
-              id="outlined-multiline-static"
-              label="Write A Comment"
-              multiline={true}
-              size={"medium"}
-              name="comment_body"
-              value={content}
-              rows={content!.length > 35 ? 3 : 1}
-              error={content!.length > 200 ? true : false}
-              fullWidth={true}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment
-                    style={{ cursor: "pointer", alignItems: "center" }}
-                    position="start"
-                  >
-                    <GifIcon
-                      data-testid="gif-icon"
-                      onClick={() => setGifSelected(true)}
-                    />
-                  </InputAdornment>
-                ),
-              }}
-              margin="normal"
-              variant="outlined"
-              onChange={commentChange}
+            <GifSection apiKey={apiKey} select={gifChange} />
+            <Grid
+              container={true}
+              spacing={0}
+              style={{ padding: "10px 0px" }}
+            ></Grid>
+          </Fragment>
+        )}
+
+        <Fragment>
+          <TextField
+            className="commentInput"
+            data-testid="comment_input"
+            type="text"
+            style={style}
+            id="outlined-multiline-static"
+            label="Write A Comment"
+            multiline={true}
+            size={"medium"}
+            name="comment_body"
+            value={content}
+            rows={content!.length > 35 ? 3 : 1}
+            error={content!.length > 200 ? true : false}
+            fullWidth={true}
+            margin="normal"
+            variant="outlined"
+            onChange={commentChange}
+          />
+          <Grid style={{ margin: "10px 0px" }} item={true} sm={2} lg={1}>
+            <GifIcon
+              data-testid="gif-icon"
+              onClick={() => setGifSelected(true)}
+              style={{ cursor: "pointer", margin: "0px 0px" }}
             />
-            <Button
+            <TextFieldsIcon
+              data-testid="text-icon"
+              style={{ cursor: "pointer", margin: "0px 15px" }}
+              onClick={() => setGifSelected(false)}
+            />
+          </Grid>
+          {isGifSelected === false ? (
+            <OurButton
               disabled={
                 content.length > 6 && content.length <= 200 ? false : true
               }
-              style={buttonStyle}
-              type="submit"
-              variant="outlined"
-              color="primary"
-              data-testid="comment-button"
             >
               Post A Comment
-            </Button>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <GifSection apiKey={apiKey} select={gifChange} />
-            <Grid container={true} spacing={1} style={{ padding: "50px 0px" }}>
-              <Grid item={true} sm={1} lg={1}>
-                <TextFieldsIcon
-                  data-testid="text-icon"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setGifSelected(false)}
-                />
-              </Grid>
-              <Grid item={true} sm={2} lg={3}>
-                <Button
-                  disabled={gifUrl !== "" ? false : true}
-                  size="small"
-                  type="submit"
-                  variant="outlined"
-                  color="primary"
-                >
-                  Post GIPHY
-                </Button>
-              </Grid>
+            </OurButton>
+          ) : (
+            <Grid item={true} sm={2} lg={3}>
+              <OurButton disabled={gifUrl !== "" ? false : true}>
+                Post GIPHY
+              </OurButton>
             </Grid>
-          </Fragment>
-        )}
+          )}
+        </Fragment>
       </form>
     </Fragment>
   );
