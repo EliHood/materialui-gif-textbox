@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import GifIcon from "@material-ui/icons/Gif";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import OurButton from "./styled/MainButton";
