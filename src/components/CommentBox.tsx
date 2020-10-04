@@ -9,7 +9,7 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import Dropbox from "./Dropbox/DropBox";
 type CommentType = {
   type: "gif-comment" | "post";
-  content: string;
+  content?: string;
   commentChange: (data: any) => void;
   gifChange: any;
   gifUrl: string;
