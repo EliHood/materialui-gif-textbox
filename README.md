@@ -1,4 +1,4 @@
-## Material UI Text/Gif Comment Box (still in development)
+## Material UI Text/Gif/Attachment Comment Box
 
 ##### Component that is built on top of Material UI, and React Giphy Searchbox.
 
@@ -17,6 +17,7 @@ import CommentBox from "material-ui-gif-textbox";
 function App() {
   const [commentBody, setCommentBody] = useState("");
   const [gifUrl, setGifUrl] = useState("");
+  const [files, setFiles] = useState([]);
   const selectGif = React.useCallback(
     (e) => {
       setGifUrl(e.images.downsized_large.url);
@@ -36,6 +37,7 @@ function App() {
     const data = {
       url: gifUrl,
       content: commentBody,
+      file: files,
     };
     console.log(data);
   };
@@ -48,6 +50,9 @@ function App() {
       gifChange={selectGif}
       gifUrl={gifUrl}
       onSubmit={onSubmit}
+      files={files}
+      setFiles={setFiles}
+      haveAttachment={true}
     />
   );
 }

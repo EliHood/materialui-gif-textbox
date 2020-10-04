@@ -4,6 +4,7 @@ import CommentBox from "../src";
 function App() {
   const [commentBody, setCommentBody] = useState("");
   const [gifUrl, setGifUrl] = useState("");
+  const [files, setFiles] = useState([]);
   const selectGif = React.useCallback(
     (e) => {
       setGifUrl(e.images.downsized_large.url);
@@ -23,6 +24,7 @@ function App() {
     const data = {
       url: gifUrl,
       content: commentBody,
+      file: files,
     };
     console.log(data);
   };
@@ -35,6 +37,9 @@ function App() {
       gifChange={selectGif}
       gifUrl={gifUrl}
       onSubmit={onSubmit}
+      files={files}
+      setFiles={setFiles}
+      haveAttachment={true}
     />
   );
 }

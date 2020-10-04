@@ -8,7 +8,7 @@ type GifType = {
 const GifSection: React.FC<GifType> = (props) => {
   const { apiKey, select } = props;
   return (
-    <div data-testid="gif-section">
+    <div style={{ margin: "20px 0px" }} data-testid="gif-section">
       <ReactGiphySearchbox
         data-testid="search-box"
         wrapperClassName="gifForm"
