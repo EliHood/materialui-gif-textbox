@@ -26,7 +26,6 @@ type CommentType = {
 const CommentBox: React.FC<CommentType> = (props) => {
   const [isGifSelected, setGifSelected] = useState<Boolean>(false);
   const [isAttachSelected, setAttachSelected] = useState<Boolean>(false);
-
   const { files, setFiles } = props;
   const {
     type,

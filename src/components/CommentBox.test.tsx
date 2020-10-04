@@ -19,6 +19,7 @@ const mockProps = {
   gifUrl: "fsfsfsfsfsfsfsfs",
   apiKey: "9Ixlv3DWC1biJRI57RanyL7RTbfzz0o7",
   onSubmit: jest.fn(),
+  setFiles: jest.fn(),
 };
 
 describe("CommentBox Test", () => {
@@ -48,6 +49,9 @@ describe("CommentBox Test", () => {
           gifChange={mockProps.gifChange}
           gifUrl={"fsfsfsfsfsfsfsfs"}
           onSubmit={mockProps.onSubmit}
+          haveAttachment={false}
+          files={[]}
+          setFiles={mockProps.setFiles}
         />
       );
     });
@@ -72,10 +76,10 @@ describe("CommentBox Test", () => {
   it("should test onChange TextField", () => {
     const field = screen.getByTestId("comment_input").querySelector("textarea");
     fireEvent.change(field, {
-      target: { name: "comment_body", value: "Owls Are Cool" },
+      target: { name: "comment_body", defaultValue: "Owls Are Cool" },
     });
 
-    expect(field.value).toBe("Owls Are Cool");
+    expect(field.defaultValue).toBe("Owls Are Cool");
   });
 
   it("should click gif icon and click text icon ", async () => {
@@ -119,9 +123,61 @@ describe("Should render <CommentBox/> diffent use case", () => {
           gifChange={mockProps.gifChange}
           gifUrl={"fsfsfsfsfsfsfsfs"}
           onSubmit={mockProps.onSubmit}
+          haveAttachment={false}
+          files={[]}
+          setFiles={mockProps.setFiles}
         />
       );
     });
+  });
+
+  it("button should be disabled", () => {
+    expect(screen.getByTestId("comment-button")).toBeEnabled();
+  });
+});
+
+describe("Should render <CommentBox/> diffent use case if attachment is true", () => {
+  beforeEach(async () => {
+    enableFetchMocks();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // deprecated
+        removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+
+    await act(async () => {
+      render(
+        <CommentBox
+          type="gif-comment"
+          apiKey="9Ixlv3DWC1biJRI57RanyL7RTbfzz0o7"
+          commentChange={mockProps.commentChange}
+          content={
+            "BlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlahBlah"
+          }
+          gifChange={mockProps.gifChange}
+          gifUrl={"fsfsfsfsfsfsfsfs"}
+          onSubmit={mockProps.onSubmit}
+          haveAttachment={true}
+          files={[]}
+          setFiles={mockProps.setFiles}
+        />
+      );
+    });
+  });
+
+  it("should click attach icon", async () => {
+    fireEvent.click(screen.getByTestId("attach-icon"));
+    await waitFor(() =>
+      expect(screen.getByTestId("dropzone")).toBeInTheDocument()
+    );
   });
 
   it("button should be disabled", () => {

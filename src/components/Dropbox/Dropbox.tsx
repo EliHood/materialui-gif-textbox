@@ -112,9 +112,9 @@ const Dropbox: React.FC<DropboxType> = (props) => {
     },
     [files]
   );
-  console.log(files);
+
   return (
-    <section className="container">
+    <section data-testid="dropzone" className="container">
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
