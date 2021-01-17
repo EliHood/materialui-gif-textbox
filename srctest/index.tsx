@@ -10,7 +10,7 @@ function App() {
       setGifUrl(e.images.downsized_large.url);
       setCommentBody("");
     },
-    [setGifUrl, setCommentBody]
+    [gifUrl, commentBody]
   );
   const commentChange = React.useCallback(
     (data) => {
