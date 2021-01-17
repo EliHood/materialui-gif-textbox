@@ -17,7 +17,7 @@ function App() {
       setGifUrl("");
       setCommentBody(data);
     },
-    [setGifUrl, setCommentBody]
+    [gifUrl, commentBody]
   );
   const onSubmit = (e) => {
     e.preventDefault();

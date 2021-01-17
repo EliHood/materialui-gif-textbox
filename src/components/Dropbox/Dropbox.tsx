@@ -1,5 +1,4 @@
-import { Typography } from "@material-ui/core";
-import React, { useCallback, useMemo, useEffect, useState } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
 type DropboxType = {

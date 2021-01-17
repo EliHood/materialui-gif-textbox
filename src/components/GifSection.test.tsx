@@ -65,24 +65,13 @@ describe("<GifSection/> test case", () => {
         matches: false,
         media: query,
         onchange: null,
-        addListener: jest.fn(), // deprecated
-        removeListener: jest.fn(), // deprecated
+        addListener: jest.fn(), 
+        removeListener: jest.fn(), 
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
         dispatchEvent: jest.fn(),
       })),
     });
   });
-  // it("should select change", async () => {
-  //   const mockSelect = jest.fn();
-  //   render(
-  //     <GifSection
-  //       apiKey="9Ixlv3DWC1biJRI57RanyL7RTbfzz0o7"
-  //       select={mockSelect}
-  //     />
-  //   );
-  //   fireEvent.click(screen.getByTestId("SearchFormInput"));
-  //   await waitFor(() => screen.debug(screen.getByTestId("gif-section")));
-  //   await expect(mockProps.select).toHaveBeenCalledTimes(1);
-  // });
+
 });
